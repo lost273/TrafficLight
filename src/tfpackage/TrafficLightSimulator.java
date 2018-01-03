@@ -59,4 +59,20 @@ public class TrafficLightSimulator implements Runnable{
         changed = true;
         notify();
     }
+    synchronized void waitForChange(){
+        try {
+            while(!changed){
+                wait();
+            }
+            changed = false;
+        } catch(InterruptedException exc){
+            System.out.println(exc);
+        }
+    }
+    TrafficLightColor getColor(){
+        return tlc;
+    }
+    void cancel(){
+        stop = true;
+    }
 }
