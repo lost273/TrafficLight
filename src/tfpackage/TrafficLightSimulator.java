@@ -24,4 +24,25 @@ public class TrafficLightSimulator implements Runnable{
         thrd = new Thread(this);
         thrd.start();
     }
+    //run the imitation
+    public void run(){
+        while(!stop){
+            try{
+                switch(tlc){
+                    case GREEN:
+                        Thread.sleep(10000);
+                        break;
+                    case YELLOW:
+                        Thread.sleep(2000);
+                        break;
+                    case RED:
+                        Thread.sleep(12000);
+                        break;
+                }
+            } catch (InterruptedException exc){
+                System.out.println(exc);
+            }
+            changeColor();
+        }
+    }
 }
